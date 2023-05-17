@@ -1,4 +1,4 @@
-package com.gbsolorzano.demo;
+package com.gbsolorzano;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

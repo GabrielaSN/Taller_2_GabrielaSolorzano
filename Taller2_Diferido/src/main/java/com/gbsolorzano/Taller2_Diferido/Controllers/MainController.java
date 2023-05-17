@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,6 +33,7 @@ public class MainController {
 
 	@Autowired
     private UserService userService;
+
 	
 	   //Get All Users
     @GetMapping("/user/all")
@@ -43,6 +45,7 @@ public class MainController {
 
         for (User usuario : usuarios) {
             Map<String, String> datosReducidos = new HashMap<>();
+            datosReducidos.put("id", usuario.getID());
             datosReducidos.put("username", usuario.getUsername());
             datosReducidos.put("email", usuario.getEmail());
             datosReducidos.put("hiredate", usuario.getHiredate());
@@ -77,7 +80,7 @@ public class MainController {
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
     
-    //Post new user
+    //  crear user
     @PostMapping("/user")
     public ResponseEntity<?> registroUsuario(@RequestBody User usuario){
         
@@ -119,13 +122,13 @@ public class MainController {
 
         // verificar que el user existe y la contrasenia esta bien
         if (user == null || !user.getPassword().equals(currentPassword)) {
-            return ResponseEntity.badRequest().body("Usuario no encontrado o contraseña actual incorrecta.");
+            return ResponseEntity.badRequest().body("Usuario no encontrado o contrasenia actual incorrecta.");
         }
 
         // actualizar la passwrd
         user.setPassword(newPassword);
         userService.updateUser(user);
 
-        return ResponseEntity.ok("Contraseña actualizada exitosamente.");
+        return ResponseEntity.ok("Contrasenia actualizada.");
     }
 }

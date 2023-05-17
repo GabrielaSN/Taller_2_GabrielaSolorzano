@@ -14,7 +14,7 @@ public class UserServiceImplementation implements UserService {
     private static List<User> users = new ArrayList<>();
 	
 	static {
-		users.add(new User("1", "GabrielaS", "00185119@uca.edu.sv", "Gabriela", "0102030405","active","16/05/2020","Admin"));
+		users.add(new User("1", "GabrielaS", "00185119@uca.edu.sv", "Gabriela", "0102030405#@xyz","active","16/05/2020","Admin"));
 
     }
 	
@@ -34,7 +34,7 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public User findOneByIdentifier(String identifier) {
 		return users.stream()
-				.filter(u -> (u.getUsername().equals(identifier) || u.getEmail().equals(identifier) ))
+				.filter(u -> (u.getID().equals(identifier) ))
 				.findAny()
 				.orElse(null);
 	}

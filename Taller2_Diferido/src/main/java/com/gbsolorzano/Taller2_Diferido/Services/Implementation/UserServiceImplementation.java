@@ -34,7 +34,7 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public User findOneByIdentifier(String identifier) {
 		return users.stream()
-				.filter(u -> (u.getID().equals(identifier) ))
+				.filter(u -> (u.getUsername().equals(identifier) || u.getEmail().equals(identifier) ))
 				.findAny()
 				.orElse(null);
 	}

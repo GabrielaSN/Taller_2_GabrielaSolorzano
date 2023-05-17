@@ -118,7 +118,7 @@ public class MainController {
         String newPassword = updatePasswordRequest.getNewPassword()+"#@xyz";
 
         // search user con el identificador
-        User user = userService.findOneByIdentifier(identifier);
+        User user = userService.findOneById(identifier);
 
         // verificar que el user existe y la contrasenia esta bien
         if (user == null || !user.getPassword().equals(currentPassword)) {
